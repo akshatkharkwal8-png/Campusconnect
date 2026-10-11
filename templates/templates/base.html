@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}CampusConnect{% endblock %} · CampusConnect</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<header class="nav-wrap">
+  <nav class="nav container">
+    <a class="brand" href="{{ url_for('index') }}"><span class="brand-mark">✳</span><span>campus<span class="brand-light">connect</span><small>YOUR CAMPUS, IN SYNC</small></span></a>
+    <div class="nav-links">
+      <a href="{{ url_for('events_page') }}">Explore events</a>
+      <a href="{{ url_for('clubs_page') }}">Clubs</a>
+      <a href="{{ url_for('registrations_page') }}">Registrations</a>
+      <a class="nav-cta" href="{{ url_for('admin') }}">Manage ↗</a>
+    </div>
+  </nav>
+</header>
+{% with messages = get_flashed_messages(with_categories=true) %}
+{% if messages %}<div class="flash-wrap container">{% for category, message in messages %}<div class="flash {{ category }}">{{ message }} <button onclick="this.parentElement.remove()">×</button></div>{% endfor %}</div>{% endif %}
+{% endwith %}
+<main>{% block content %}{% endblock %}</main>
+<footer class="footer"><div class="container footer-inner"><a class="brand footer-brand" href="{{ url_for('index') }}"><span class="brand-mark">✳</span><span>campus<span class="brand-light">connect</span><small>YOUR CAMPUS, IN SYNC</small></span></a><p>Made for campus life. Built with Python + SQL.</p><span>© 2026 CampusConnect</span></div></footer>
+</body></html>
