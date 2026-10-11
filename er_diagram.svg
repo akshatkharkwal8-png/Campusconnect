@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="780" viewBox="0 0 1200 780">
+<rect width="1200" height="780" fill="#f7f7fb"/>
+<text x="600" y="45" text-anchor="middle" font-family="Arial" font-size="28" font-weight="bold" fill="#171722">CampusConnect — ER Diagram</text>
+<text x="600" y="72" text-anchor="middle" font-family="Arial" font-size="14" fill="#777787">Campus events, clubs, students and registrations</text>
+<!-- relationships behind boxes -->
+<g stroke="#7857f8" stroke-width="3" fill="none">
+<path d="M350 230 H430 V250 H500"/><path d="M750 250 H820 V230 H880"/>
+<path d="M350 510 H430 V420 H500"/><path d="M700 470 V560 H580 V600"/>
+<path d="M750 600 H850 V510 H880"/>
+</g>
+<g fill="#7857f8" font-family="Arial" font-size="13" font-weight="bold">
+<text x="385" y="215">1 : N</text><text x="790" y="215">1 : N</text><text x="385" y="495">1 : N</text><text x="610" y="548">1 : N</text><text x="790" y="585">1 : N</text>
+</g>
+<!-- clubs -->
+<g><rect x="70" y="130" width="280" height="210" rx="14" fill="#fff" stroke="#7857f8" stroke-width="2"/><path d="M70 144 Q70 130 84 130 H336 Q350 130 350 144 V174 H70Z" fill="#7857f8"/><text x="210" y="159" text-anchor="middle" font-family="Arial" font-size="19" font-weight="bold" fill="#fff">CLUBS</text>
+<g font-family="Arial" font-size="15" fill="#171722"><text x="92" y="205">🔑 club_id (PK)</text><text x="92" y="238">name (UNIQUE)</text><text x="92" y="271">category</text><text x="92" y="304">description</text><text x="92" y="327">accent</text></g></g>
+<!-- events -->
+<g><rect x="500" y="130" width="250" height="330" rx="14" fill="#fff" stroke="#06b6d4" stroke-width="2"/><path d="M500 144 Q500 130 514 130 H736 Q750 130 750 144 V174 H500Z" fill="#0891b2"/><text x="625" y="159" text-anchor="middle" font-family="Arial" font-size="19" font-weight="bold" fill="#fff">EVENTS</text>
+<g font-family="Arial" font-size="14" fill="#171722"><text x="520" y="204">🔑 event_id (PK)</text><text x="520" y="233">club_id (FK)</text><text x="520" y="262">title</text><text x="520" y="291">description</text><text x="520" y="320">event_date, event_time</text><text x="520" y="349">venue</text><text x="520" y="378">capacity</text><text x="520" y="407">status</text><text x="520" y="436">created_at</text></g></g>
+<!-- registrations -->
+<g><rect x="880" y="130" width="250" height="250" rx="14" fill="#fff" stroke="#f97316" stroke-width="2"/><path d="M880 144 Q880 130 894 130 H1116 Q1130 130 1130 144 V174 H880Z" fill="#ea580c"/><text x="1005" y="159" text-anchor="middle" font-family="Arial" font-size="18" font-weight="bold" fill="#fff">REGISTRATIONS</text>
+<g font-family="Arial" font-size="14" fill="#171722"><text x="900" y="205">🔑 registration_id (PK)</text><text x="900" y="234">student_id (FK)</text><text x="900" y="263">event_id (FK)</text><text x="900" y="292">registered_at</text><text x="900" y="321">attendance_status</text><text x="900" y="350">UNIQUE(student_id,event_id)</text></g></g>
+<!-- students -->
+<g><rect x="70" y="430" width="280" height="210" rx="14" fill="#fff" stroke="#22c55e" stroke-width="2"/><path d="M70 444 Q70 430 84 430 H336 Q350 430 350 444 V474 H70Z" fill="#16a34a"/><text x="210" y="459" text-anchor="middle" font-family="Arial" font-size="19" font-weight="bold" fill="#fff">STUDENTS</text>
+<g font-family="Arial" font-size="15" fill="#171722"><text x="92" y="505">🔑 student_id (PK)</text><text x="92" y="538">full_name</text><text x="92" y="571">email (UNIQUE)</text><text x="92" y="604">course</text><text x="92" y="627">year_of_study</text></g></g>
+<!-- legend -->
+<g><rect x="500" y="600" width="630" height="105" rx="14" fill="#eeecf8"/><text x="525" y="633" font-family="Arial" font-size="17" font-weight="bold" fill="#171722">Relationship logic</text><text x="525" y="661" font-family="Arial" font-size="14" fill="#555466">• One club can organise many events; each event belongs to one club.</text><text x="525" y="686" font-family="Arial" font-size="14" fill="#555466">• Students and events are many-to-many, resolved by REGISTRATIONS.</text></g>
+<text x="70" y="730" font-family="Arial" font-size="13" fill="#777787">PK = Primary Key  |  FK = Foreign Key  |  1:N = One-to-many</text>
+</svg>

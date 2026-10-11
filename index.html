@@ -1,0 +1,30 @@
+{% extends "base.html" %}{% block title %}Find your people{% endblock %}
+{% block content %}
+<section class="hero">
+  <div class="hero-orb orb-one"></div><div class="hero-orb orb-two"></div>
+  <div class="container hero-grid">
+    <div class="hero-copy">
+      <div class="eyebrow"><span class="live-dot"></span> THE CAMPUS EXPERIENCE, REIMAGINED</div>
+      <h1>Your campus.<br><em>Your people.</em><br>Your moment.</h1>
+      <p class="hero-sub">Discover what’s happening, find your community, and make the days between lectures count.</p>
+      <div class="hero-actions"><a class="btn btn-primary" href="{{ url_for('events_page') }}">Explore events <span>↗</span></a><a class="text-link" href="{{ url_for('clubs_page') }}">Meet the clubs <span>→</span></a></div>
+      <div class="hero-proof"><div class="avatar-stack"><i>✦</i><i>♫</i><i>⌘</i><i>+</i></div><span><b>One campus, endless stories.</b><br>Find the thing that feels like you.</span></div>
+    </div>
+    <div class="hero-visual">
+      <div class="visual-card visual-main"><div class="visual-top"><span class="pill pill-lime">UP NEXT</span><span>↗</span></div><div class="visual-art"><div class="sun"></div><div class="art-line line-a"></div><div class="art-line line-b"></div><div class="art-type">AFTER<br>GLOW<span>✳</span></div><div class="art-bottom">LIVE MUSIC · CAMPUS LAWN</div></div><div class="visual-meta"><div><small>FRIDAY · 24 OCT</small><h3>Afterglow: Open-Air Music Night</h3></div><span class="round-arrow">↗</span></div></div>
+      <div class="floating-note note-top"><span class="note-icon purple">♫</span><span><b>Find your vibe</b><small>Music · Culture · People</small></span></div>
+      <div class="floating-note note-bottom"><span class="note-icon lime">✦</span><span><b>Something is happening</b><small>Don’t hear about it later.</small></span></div>
+      <div class="visual-sticker">GOOD<br>THINGS<br>HAPPEN<br>HERE <span>↘</span></div>
+    </div>
+  </div>
+</section>
+<section class="stats-section"><div class="container stats-grid">
+  <div class="stat-intro"><span class="eyebrow dark-eyebrow">THE CAMPUS PULSE</span><h2>Small moments.<br><em>Big memories.</em></h2></div>
+  <div class="stat"><strong>{{ counts.events }}</strong><span>Upcoming events</span><small>There’s always a plan.</small></div>
+  <div class="stat"><strong>{{ counts.clubs }}</strong><span>Student communities</span><small>Your people are here.</small></div>
+  <div class="stat"><strong>{{ counts.registrations }}</strong><span>Registrations</span><small>Showing up starts here.</small></div>
+</div></section>
+<section class="section container"><div class="section-heading"><div><span class="eyebrow dark-eyebrow">SAVE YOUR SPOT</span><h2>Coming up <em>next.</em></h2><p>Good plans deserve a place on your calendar.</p></div><a class="text-link" href="{{ url_for('events_page') }}">All events <span>→</span></a></div>
+<div class="event-grid">{% for event in events %}<article class="event-card"><div class="event-art art-{{ loop.index }}"><span class="event-category">{{ event.club_name }}</span><span class="event-symbol">{% if loop.index == 1 %}♫{% elif loop.index == 2 %}⌘{% elif loop.index == 3 %}✳{% else %}↗{% endif %}</span><span class="event-date-block"><b>{{ event.event_date[8:10] }}</b><small>{{ event.event_date[5:7] }}</small></span></div><div class="event-body"><div class="event-meta"><span>{{ event.event_time }} · {{ event.venue }}</span><span class="capacity">{{ event.registered }}/{{ event.capacity }} spots</span></div><h3>{{ event.title }}</h3><p>{{ event.description }}</p><a class="card-link" href="{{ url_for('events_page') }}">View details <span>↗</span></a></div></article>{% else %}<p>No upcoming events just yet.</p>{% endfor %}</div></section>
+<section class="club-band"><div class="container club-band-inner"><div><span class="eyebrow">FIND YOUR CORNER</span><h2>There’s a place<br>for <em>your kind of curious.</em></h2><p>From big ideas to late-night jams, campus clubs turn interests into communities.</p><a class="btn btn-lime" href="{{ url_for('clubs_page') }}">Explore communities ↗</a></div><div class="club-mini-grid">{% for club in clubs[:4] %}<div class="club-mini"><span style="color:{{ club.accent }}">✳</span><div><b>{{ club.name }}</b><small>{{ club.category }}</small></div><span class="mini-arrow">↗</span></div>{% endfor %}</div></div></section>
+{% endblock %}
